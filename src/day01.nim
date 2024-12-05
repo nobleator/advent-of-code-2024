@@ -30,8 +30,8 @@ proc d01b(input: string): int =
         s += n * lc * rc
     s
 
-assert d01a("./inputs/day01_test01.txt") == 11
+assert d01a("./test/day01.txt") == 11
 echo "Part 1: ", d01a("./inputs/day01.txt")
 
-assert d01b("./inputs/day01_test01.txt") == 31
+assert d01b("./test/day01.txt") == 31
 echo "Part 2: ", d01b("./inputs/day01.txt")
