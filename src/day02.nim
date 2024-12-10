@@ -1,4 +1,6 @@
-import std/strutils, std/sequtils, std/algorithm, std/sets, std/strformat
+import std/strutils, std/sequtils
+const lb = 1
+const ub = 3
 
 proc d01a(input: string): int =
     const lb = 1
@@ -27,11 +29,39 @@ proc d01a(input: string): int =
             safe += 1
     safe
 
+func isSafe(r: seq[int]): bool =
+    var isAsc, isDesc = true
+    for idx, v in r:
+        if idx > 0 and isAsc:
+            let d = v - r[idx - 1]
+            let inBounds = d >= lb and d <= ub
+            if not inBounds:
+                isAsc = false
+    for idx, v in r:
+        if idx > 0 and isDesc:
+            let d = r[idx - 1] - v
+            let inBounds = d >= lb and d <= ub
+            if not inBounds:
+                isDesc = false
+    return isAsc or isDesc
+
 proc d01b(input: string): int =
-    -1
+    let file = readFile(input)
+    var safe = 0
+    for line in file.split("\n"):
+        let s = line.split(" ").map(parseInt)
+        if isSafe(s):
+            safe += 1
+        else:
+            for idx, v in s:
+                var split = s[0..idx-1] & s[idx+1..len(s)-1]
+                if isSafe(split):
+                    safe += 1
+                    break
+    safe
 
 assert d01a("./test/day02.txt") == 2
 echo "Part 1: ", d01a("./inputs/day02.txt")
 
-# assert d01b("./test/day02.txt") == -1
-# echo "Part 2: ", d01b("./inputs/day02.txt")
+assert d01b("./test/day02.txt") == 4
+echo "Part 2: ", d01b("./inputs/day02.txt")
