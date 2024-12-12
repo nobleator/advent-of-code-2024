@@ -2,7 +2,7 @@ import std/strutils, std/sequtils
 const lb = 1
 const ub = 3
 
-proc d01a(input: string): int =
+proc d02a(input: string): int =
     const lb = 1
     const ub = 3
     let file = readFile(input)
@@ -45,7 +45,7 @@ func isSafe(r: seq[int]): bool =
                 isDesc = false
     return isAsc or isDesc
 
-proc d01b(input: string): int =
+proc d02b(input: string): int =
     let file = readFile(input)
     var safe = 0
     for line in file.split("\n"):
@@ -60,8 +60,8 @@ proc d01b(input: string): int =
                     break
     safe
 
-assert d01a("./test/day02.txt") == 2
-echo "Part 1: ", d01a("./inputs/day02.txt")
+assert d02a("./test/day02.txt") == 2
+echo "Part 1: ", d02a("./inputs/day02.txt")
 
-assert d01b("./test/day02.txt") == 4
-echo "Part 2: ", d01b("./inputs/day02.txt")
+assert d02b("./test/day02.txt") == 4
+echo "Part 2: ", d02b("./inputs/day02.txt")

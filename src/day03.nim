@@ -1,6 +1,6 @@
 import std/re, std/strutils, std/sequtils
 
-proc d01a(input: string): int =
+proc d03a(input: string): int =
     let pattern = re"mul\(\d{1,3},\d{1,3}\)"
     let matches = re.findAll(readFile(input), pattern)
     var sum = 0
@@ -9,7 +9,7 @@ proc d01a(input: string): int =
         sum += re.findAll(match, digitsPattern).map(parseInt).foldl(a * b)
     return sum
 
-proc d01b(input: string): int =
+proc d03b(input: string): int =
     let pattern = re"mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\)"
     let digitsPattern = re"\d{1,3}"
     var text = readFile(input)
@@ -25,8 +25,8 @@ proc d01b(input: string): int =
             sum += re.findAll(match, digitsPattern).map(parseInt).foldl(a * b)
     return sum
 
-assert d01a("./test/day03.txt") == 161
-echo "Part 1: ", d01a("./inputs/day03.txt")
+assert d03a("./test/day03.txt") == 161
+echo "Part 1: ", d03a("./inputs/day03.txt")
 
-assert d01b("./test/day03b.txt") == 48
-echo "Part 2: ", d01b("./inputs/day03.txt")
+assert d03b("./test/day03b.txt") == 48
+echo "Part 2: ", d03b("./inputs/day03.txt")
