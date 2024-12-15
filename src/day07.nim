@@ -1,21 +1,8 @@
 import std/strutils, std/sequtils
+import algo
 
 const ops = @['+', '*']
 const ops2 = @['+', '*', '|']
-
-func generatePermutations(ops: seq[char], length: int, current: seq[char], result: var seq[seq[char]]) =
-    if len(current) == length:
-        result.add(current)
-    else:
-        for o in ops:
-            var newSeq = current
-            newSeq.add(o)
-            generatePermutations(ops, length, newSeq, result)
-
-func getPermutations(ops: seq[char], length: int): seq[seq[char]] =
-    var res: seq[seq[char]] = @[]
-    generatePermutations(ops, length, @[], res)
-    return res
 
 proc d07a(input: string): int =
     var text = readFile(input)

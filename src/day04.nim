@@ -1,8 +1,5 @@
 import std/re, std/strutils, std/sequtils
-
-type
-  Row = seq[char]
-  Grid = seq[Row]
+import grid
 
 proc d04a(input: string): int =
     var file = readFile(input)
