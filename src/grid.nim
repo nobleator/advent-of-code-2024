@@ -12,6 +12,9 @@ proc printGrid*(grid: Grid): string =
 func `+`*(a, b: (int, int)): (int, int) =
     result = (a[0] + b[0], a[1] + b[1])
 
+func `-`*(a, b: (int, int)): (int, int) =
+    result = (a[0] - b[0], a[1] - b[1])
+
 func gridContains*(grid: Grid, point: (int, int)): bool =
     point[0] >= 0 and point[0] < len(grid) and point[1] >= 0 and point[1] < len(grid[0])
 
