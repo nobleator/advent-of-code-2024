@@ -20,3 +20,11 @@ func gridContains*(grid: Grid, point: (int, int)): bool =
 
 func get*(grid: Grid, point: (int, int)): char =
     grid[point[0]][point[1]]
+
+func getOrthogonal*(grid: Grid, point: (int, int)): seq[(int, int)] =
+    var res: seq[(int, int)]
+    for d in @[(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        let np = point+d
+        if gridContains(grid, np):
+            res.add(np)
+    res
