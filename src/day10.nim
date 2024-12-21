@@ -28,7 +28,7 @@ func walk(grid: Grid, point: (int, int)): int =
                 score += walk(grid, n)
     return score
 
-proc d10a(input: string): int64 =
+proc d10a(input: string): int =
     var file = readFile(input)
     var rowCount = file.countLines()
     var colCount = len(file.split('\n', maxsplit=1)[0])
